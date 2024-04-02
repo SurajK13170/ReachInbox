@@ -7,7 +7,6 @@ const { google } = require("googleapis");
 const { Queue, Worker } = require('bullmq'); // Import Queue and Worker from bullmq
 const { Redis } = require("ioredis");
 
-// Connections redis 
 const connection = new Redis({
   port: 16822,
   host: process.env.redis_host,
@@ -18,7 +17,6 @@ const connection = new Redis({
 
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
-// Create a BullMQ queue
 const queue = new Queue('gmail-auto-reply-queue', {
   connection: connection
 });
@@ -49,7 +47,6 @@ googlerouter.get("/gmail", async (req, res) => {
   });
 
   try {
-    // Define a task function for sending auto-reply to all unread emails
     const sendAutoReply = async () => {
       const response = await gmail.users.messages.list({
         userId: 'me',
