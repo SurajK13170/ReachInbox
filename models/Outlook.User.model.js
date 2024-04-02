@@ -2,7 +2,7 @@
 const {sequelize} = require('../db')
 const { Sequelize, DataTypes } = require('sequelize');
 
-const User = sequelize.define('OutlookUser', {
+const outlookUser = sequelize.define('OutlookUser', {
   OutlookId: {
     type: DataTypes.STRING,
     allowNull: true,
@@ -25,4 +25,4 @@ const User = sequelize.define('OutlookUser', {
   },
 });
 
-module.exports = {User};
+module.exports = {outlookUser};
